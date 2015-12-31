@@ -10,10 +10,15 @@
       "48": "reddit_randomizer_icon_48.png",
       "128": "reddit_randomizer_icon_128.png"
     },
-    "default_icon" : "reddit_randomizer_icon_128.png"
+    "default_icon" : "reddit_randomizer_icon_128.png",
+    "default_popup": "popup_options.html"
   },
+  "permissions": [
+    "storage"
+  ],
   "content_scripts"   :     [ {
-    "js"      : ["scripts/jquery.min.js", "scripts/background.js"],
+    "js"      : ["scripts/jquery.min.js", "scripts/jquery.blockUI.js", "scripts/background.js"],
     "matches" : [ "http://*.reddit.com/*", "https://*.reddit.com/*"]
-  } ]
+  } ],
+  "web_accessible_resources"  : ["imgs/ajax-loader.gif"]
 }
