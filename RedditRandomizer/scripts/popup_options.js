@@ -2,10 +2,12 @@ $(document).ready( function() {
 
     chrome.storage.local.get({
         showLoadingDialog : 'true',
-        isActivated: 'true'
+        isActivated: 'true',
+        redditOrRedditNsfw: 'false'
     }, function ( items ) {
         var bShowLoadingDialog = items.showLoadingDialog;
         var bIsActivated = items.isActivated;
+        var bRedditOrRedditNsfw = items.redditOrRedditNsfw;
 
         if( bShowLoadingDialog) {
             $('#chkShowLoadingDialog').attr('checked',  true);
@@ -13,6 +15,12 @@ $(document).ready( function() {
 
         if( !bIsActivated ) {
             $('#btnActivateDeactive').toggleClass('button-primary').text( "Activate" );
+        }
+
+        if( bRedditOrRedditNsfw ) {
+            $('#divReddit').toggleClass('cmn-inactive');
+            $('#divRedditNsfw').toggleClass('cmn-inactive');
+            $('#chkRedditToggle').attr('checked', true);
         }
 
         $('#btnActivateDeactive').on('click', function() {
@@ -24,6 +32,14 @@ $(document).ready( function() {
         $('#chkShowLoadingDialog').on('change', function() {
             chrome.storage.local.set( {showLoadingDialog: $('#chkShowLoadingDialog').is(":checked")} );
         });
+
+        $('#chkRedditToggle').on('change', function() {
+            $('#divReddit').toggleClass('cmn-inactive');
+            $('#divRedditNsfw').toggleClass('cmn-inactive');
+
+            chrome.storage.local.set( {redditOrRedditNsfw: $('#chkRedditToggle').is(":checked")} );
+        });
+
     });
 
 });

@@ -1,5 +1,6 @@
 var bShowLoadingDialog = true;
 var bIsActivated = true;
+var bRedditOrRedditNsfw = false;
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (key in changes) {
@@ -12,15 +13,21 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         if( key == "isActivated" ) {
             bIsActivated = storageChange.newValue;
         }
+
+        if( key == "redditOrRedditNsfw" ) {
+            bRedditOrRedditNsfw = storageChange.newValue;
+        }
     }
 });
 
 chrome.storage.local.get({
     showLoadingDialog : 'true',
-    isActivated: 'true'
+    isActivated: 'true',
+    redditOrRedditNsfw : 'false'
 }, function ( items ) {
     bShowLoadingDialog = items.showLoadingDialog;
     bIsActivated = items.isActivated;
+    bRedditOrRedditNsfw = items.redditOrRedditNsfw;
 
     $(document).keydown(function (e) {
         var keyCode = e.keyCode || e.which;
@@ -37,7 +44,12 @@ chrome.storage.local.get({
                 });
             }
 
-            window.location = 'https://www.reddit.com/r/random';
+            if( !bRedditOrRedditNsfw ) {
+                window.location = 'https://www.reddit.com/r/random';
+            }
+            else {
+                window.location = 'https://www.reddit.com/r/randnsfw';
+            }
         }
     });
 });

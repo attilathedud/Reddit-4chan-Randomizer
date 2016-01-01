@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/onoffswitch.css">
 
     <style>
         body {min-width: 400px};
@@ -26,7 +27,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="four columns" style="margin-top: 5%;">
+        <div style="margin-top: 5%;">
             <h5>Reddit Randomizer</h5>
         </div>
     </div>
@@ -46,9 +47,28 @@
             <span class="label-body">Show loading dialogue</span>
         </label>
     </div>
+    <div class="row" style="display: table; width: 100%;">
+        <div style="display: table-row;">
+            <div class="cmn-table-cell" style="width: 60px;">
+                Browse
+            </div>
+            <div id="divReddit" class="cmn-table-cell" style="width: 50px;">
+                reddit
+            </div>
+            <div class="switch cmn-table-cell" style="width: 70px;">
+              <input id="chkRedditToggle" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+              <label for="chkRedditToggle"></label>
+            </div>
+            <div id="divRedditNsfw" class="cmn-table-cell cmn-inactive">
+                reddit nsfw
+            </div>
+        </div>
+    </div>
     <div class="row">
 
     </div>
+
+
 </div>
 
 </body>
