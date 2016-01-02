@@ -21,9 +21,9 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 chrome.storage.local.get({
-    showLoadingDialog : 'true',
-    isActivated: 'true',
-    redditOrRedditNsfw : 'false'
+    showLoadingDialog : true,
+    isActivated: true,
+    redditOrRedditNsfw : false
 }, function ( items ) {
     bShowLoadingDialog = items.showLoadingDialog;
     bIsActivated = items.isActivated;
@@ -35,16 +35,16 @@ chrome.storage.local.get({
 
         if( keyCode == rightArrow && e.shiftKey) {
 
-            if( !bIsActivated ) return true;
+            if( !!!bIsActivated ) return true;
 
-            if( bShowLoadingDialog == true ) {
+            if( bShowLoadingDialog ) {
                 $.blockUI({
                     message: '<h1><img src="' + chrome.extension.getURL("../imgs/ajax-loader.gif") + '" /> Loading... </h1>',
                     css: { backgroundColor: '#000000', color: '#ffffff', border: '0', borderRadius: '5px', padding: '10px' }
                 });
             }
 
-            if( !bRedditOrRedditNsfw ) {
+            if( !!!bRedditOrRedditNsfw ) {
                 window.location = 'https://www.reddit.com/r/random';
             }
             else {

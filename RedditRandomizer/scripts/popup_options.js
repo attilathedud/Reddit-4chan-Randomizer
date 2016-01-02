@@ -1,9 +1,9 @@
 $(document).ready( function() {
 
     chrome.storage.local.get({
-        showLoadingDialog : 'true',
-        isActivated: 'true',
-        redditOrRedditNsfw: 'false'
+        showLoadingDialog : true,
+        isActivated: true,
+        redditOrRedditNsfw: false
     }, function ( items ) {
         var bShowLoadingDialog = items.showLoadingDialog;
         var bIsActivated = items.isActivated;

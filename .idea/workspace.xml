@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b84310d-d77a-4b8f-b671-b340ebdb1d7a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RedditRandomizer/scripts/background.js" afterPath="$PROJECT_DIR$/RedditRandomizer/scripts/background.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RedditRandomizer/manifest.json" afterPath="$PROJECT_DIR$/RedditRandomizer/manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RedditRandomizer/scripts/popup_options.js" afterPath="$PROJECT_DIR$/RedditRandomizer/scripts/popup_options.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RedditRandomizer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +29,8 @@
       <file leaf-file-name="manifest.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RedditRandomizer/manifest.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.125">
-              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+            <state vertical-scroll-proportion="-2.5">
+              <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -50,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="popup_options.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="popup_options.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RedditRandomizer/scripts/popup_options.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.12195122">
+              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -64,20 +67,7 @@
         <entry file="file://$PROJECT_DIR$/RedditRandomizer/scripts/background.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider editor-type-id="MarkdownPreviewEditor">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.025597269">
-              <caret line="1" column="146" selection-start-line="1" selection-start-column="146" selection-end-line="1" selection-end-column="146" />
+              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -92,11 +82,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/RedditRandomizer/css/onoffswitch.css" />
+        <option value="$PROJECT_DIR$/RedditRandomizer/popup_options.html" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/RedditRandomizer/manifest.json" />
         <option value="$PROJECT_DIR$/RedditRandomizer/scripts/background.js" />
         <option value="$PROJECT_DIR$/RedditRandomizer/scripts/popup_options.js" />
-        <option value="$PROJECT_DIR$/RedditRandomizer/popup_options.html" />
-        <option value="$PROJECT_DIR$/RedditRandomizer/manifest.json" />
-        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -438,10 +428,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RedditRandomizer/scripts/popup_options.js">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.051194537">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RedditRandomizer/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -449,7 +450,7 @@
     <entry file="file://$PROJECT_DIR$/RedditRandomizer/scripts/background.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -469,21 +470,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RedditRandomizer/manifest.json">
+    <entry file="file://$PROJECT_DIR$/RedditRandomizer/scripts/popup_options.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.025597269">
-          <caret line="1" column="146" selection-start-line="1" selection-start-column="146" selection-end-line="1" selection-end-column="146" />
+        <state vertical-scroll-proportion="0.12195122">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
           <folding />
         </state>
       </provider>
