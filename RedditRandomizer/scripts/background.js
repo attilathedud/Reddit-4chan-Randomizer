@@ -14,7 +14,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
             bIsActivated = storageChange.newValue;
         }
 
-        if( key == "redditOrRedditNsfw" ) {
+        if( key == "includeNsfwResults" ) {
             bIncludeNsfwResults = storageChange.newValue;
         }
     }
