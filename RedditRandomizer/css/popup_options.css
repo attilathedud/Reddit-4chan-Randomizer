@@ -5,3 +5,7 @@ body {
 .div-main-title {
 	margin-top: 5%;
 }
+
+.div-checkbox-row-left-padding {
+	margin-left: 8px;
+}

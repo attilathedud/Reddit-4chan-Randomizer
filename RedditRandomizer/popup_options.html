@@ -15,7 +15,8 @@
     <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
     <link rel="stylesheet" type="text/css" href="css/popup_options.css" />
 
-    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/external/jquery.min.js"></script>
+    <script src="scripts/external/jquery.keycombinator.min.js"></script>
     <script src="scripts/popup_options.js"></script>
 </head>
 <body>
@@ -33,16 +34,23 @@
         </center>
     </div>
 
+    <hr />
     <div class="row">
         <h6>Options</h6>
     </div>
     <div class="row">
+        <center>
+            Hotkey
+            <input class="one column" type="text" id="txtHotkey" />
+        </center>
+    </div>
+    <div class="row div-checkbox-row-left-padding">
         <label>
             <input type="checkbox" id="chkShowLoadingDialog">
             <span class="label-body">Show loading dialogue</span>
         </label>
     </div>
-    <div class="row">
+    <div class="row div-checkbox-row-left-padding">
         <label>
             <input type="checkbox" id="chkIncludeNsfwResults">
             <span class="label-body">Include NSFW results</span>

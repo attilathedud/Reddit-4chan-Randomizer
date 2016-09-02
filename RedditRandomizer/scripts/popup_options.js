@@ -1,13 +1,15 @@
 $(document).ready( function() {
 
     chrome.storage.local.get({
-        showLoadingDialog : true,
-        isActivated: true,
-        includeNsfwResults: false
+        hotkeyInformation           : {},
+        showLoadingDialog           : true,
+        isActivated                 : true,
+        includeNsfwResults          : false
     }, function ( items ) {
-        var bShowLoadingDialog = items.showLoadingDialog;
-        var bIsActivated = items.isActivated;
-        var bincludeNsfwResults = items.includeNsfwResults;
+        var hotkeyInformation       = items.hotkeyInformation;
+        var bShowLoadingDialog      = items.showLoadingDialog;
+        var bIsActivated            = items.isActivated;
+        var bincludeNsfwResults     = items.includeNsfwResults;
 
         if( bShowLoadingDialog) {
             $('#chkShowLoadingDialog').attr('checked',  true);
@@ -19,6 +21,24 @@ $(document).ready( function() {
 
         if( bincludeNsfwResults ) {
             $('#chkIncludeNsfwResults').attr('checked',  true);
+        }
+
+        $('#txtHotkey').makeKeyCombinator({
+            defaultCombos: {
+                mac:  ['⇧', '→'],
+                win:  ['⇧', '→'],
+                unix: ['⇧', '→']
+            },
+            onComplete: function( newCombo ) {
+                chrome.storage.local.set( { hotkeyInformation : newCombo } );
+            }
+        });
+
+        if( $.isEmptyObject( hotkeyInformation ) ) {
+            $('#txtHotkey').defaultKeyCombinator();
+        }
+        else {
+            $('#txtHotkey').val( hotkeyInformation.comboString );
         }
 
         $('#btnActivateDeactive').on('click', function() {
@@ -34,7 +54,6 @@ $(document).ready( function() {
         $('#chkIncludeNsfwResults').on('change', function() {
             chrome.storage.local.set( {includeNsfwResults: $('#chkIncludeNsfwResults').is(":checked")} );
         });
-
     });
 
 });
