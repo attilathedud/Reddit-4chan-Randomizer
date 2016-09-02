@@ -1,6 +1,6 @@
 var bShowLoadingDialog = true;
 var bIsActivated = true;
-var bRedditOrRedditNsfw = false;
+var bIncludeNsfwResults = false;
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (key in changes) {
@@ -15,7 +15,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         }
 
         if( key == "redditOrRedditNsfw" ) {
-            bRedditOrRedditNsfw = storageChange.newValue;
+            bIncludeNsfwResults = storageChange.newValue;
         }
     }
 });
@@ -23,11 +23,11 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 chrome.storage.local.get({
     showLoadingDialog : true,
     isActivated: true,
-    redditOrRedditNsfw : false
+    includeNsfwResults : false
 }, function ( items ) {
     bShowLoadingDialog = items.showLoadingDialog;
     bIsActivated = items.isActivated;
-    bRedditOrRedditNsfw = items.redditOrRedditNsfw;
+    bIncludeNsfwResults = items.includeNsfwResults;
 
     $(document).keydown(function (e) {
         var keyCode = e.keyCode || e.which;
@@ -44,11 +44,11 @@ chrome.storage.local.get({
                 });
             }
 
-            if( !!!bRedditOrRedditNsfw ) {
-                window.location = 'https://www.reddit.com/r/random';
+            if( bIncludeNsfwResults && Math.random() < 0.5 ) {
+                window.location = 'https://www.reddit.com/r/randnsfw';
             }
             else {
-                window.location = 'https://www.reddit.com/r/randnsfw';
+                window.location = 'https://www.reddit.com/r/random';
             }
         }
     });

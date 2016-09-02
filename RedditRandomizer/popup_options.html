@@ -7,27 +7,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" />
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/onoffswitch.css">
-
-    <style>
-        body {min-width: 400px};
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
+    <link rel="stylesheet" type="text/css" href="css/popup_options.css" />
 
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/popup_options.js"></script>
-
 </head>
 <body>
 
 <div class="container">
     <div class="row">
-        <div style="margin-top: 5%;">
+        <div class="div-main-title">
             <h5>Reddit Randomizer</h5>
         </div>
     </div>
@@ -47,25 +42,11 @@
             <span class="label-body">Show loading dialogue</span>
         </label>
     </div>
-    <div class="row" style="display: table; width: 100%;">
-        <div style="display: table-row;">
-            <div class="cmn-table-cell" style="width: 60px;">
-                Browse
-            </div>
-            <div id="divReddit" class="cmn-table-cell" style="width: 50px;">
-                reddit
-            </div>
-            <div class="switch cmn-table-cell" style="width: 70px;">
-              <input id="chkRedditToggle" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-              <label for="chkRedditToggle"></label>
-            </div>
-            <div id="divRedditNsfw" class="cmn-table-cell cmn-inactive">
-                reddit nsfw
-            </div>
-        </div>
-    </div>
     <div class="row">
-
+        <label>
+            <input type="checkbox" id="chkIncludeNsfwResults">
+            <span class="label-body">Include NSFW results</span>
+        </label>
     </div>
 
 
