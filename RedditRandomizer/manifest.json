@@ -18,7 +18,7 @@
       "128": "imgs/reddit_randomizer_icon_128.png"
     },
   "content_scripts"   :     [ {
-    "js"      : ["scripts/external/jquery.min.js", "scripts/external/jquery.blockUI.min.js", "scripts/background.js"],
+    "js"      : ["scripts/external/jquery.min.js", "scripts/external/jquery.blockUI.min.js", "scripts/external/jwerty.min.js", "scripts/background.js"],
     "matches" : [ "http://*.reddit.com/*", "https://*.reddit.com/*"]
   } ],
   "web_accessible_resources"  : ["imgs/ajax-loader.gif"]
