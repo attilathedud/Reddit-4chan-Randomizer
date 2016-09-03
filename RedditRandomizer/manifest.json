@@ -10,7 +10,9 @@
     "default_popup": "popup_options.html"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "http://a.4cdn.org/*",
+    "https://a.4cdn.org/*"
   ],
   "icons" : {
       "16": "imgs/reddit_randomizer_icon_16.png",
@@ -19,7 +21,7 @@
     },
   "content_scripts"   :     [ {
     "js"      : ["scripts/external/jquery.min.js", "scripts/external/jquery.blockUI.min.js", "scripts/external/jwerty.min.js", "scripts/background.js"],
-    "matches" : [ "http://*.reddit.com/*", "https://*.reddit.com/*"]
+    "matches" : [ "http://*.reddit.com/*", "https://*.reddit.com/*", "http://*.4chan.org/*", "https://*.4chan.org/*"]
   } ],
   "web_accessible_resources"  : ["imgs/ajax-loader.gif"]
 }
