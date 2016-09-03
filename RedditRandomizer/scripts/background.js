@@ -4,6 +4,7 @@ var hotkeyInformation           = {}
 var bShowLoadingDialog          = true;
 var bIsActivated                = true;
 var bIncludeNsfwResults         = false;
+var excludedBoards              = '';
 
 var sfw_boards                  = [ 'a', 'c', 'w', 'm', 'cgl', 'cm', 'f', 'n', 'jp', 'v', 'vg', 'vp', 'vr',
                                     'co', 'g', 'tv', 'k', 'o', 'an', 'tg', 'sp', 'asp', 'sci', 'his', 'int',
@@ -48,6 +49,9 @@ function init_handler( ) {
                 possible_boards = sfw_boards.concat( nsfw_boards );
             }
 
+            var excludeBoardsFormatted = $.map( excludedBoards.split(','), $.trim );
+            possible_boards = $( possible_boards ).not( excludeBoardsFormatted ).get();
+
             selected_board = get_random_index( possible_boards );
 
             $.getJSON( "https://a.4cdn.org/" + selected_board + "/threads.json", function( data ) {
@@ -86,6 +90,10 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         if( key == "includeNsfwResults" ) {
             bIncludeNsfwResults = storageChange.newValue;
         }
+
+        if( key == "excludeBoards" ) { 
+            excludedBoards = storageChange.newValue;
+        }
     }
 });
 
@@ -93,12 +101,14 @@ chrome.storage.local.get({
     hotkeyInformation           : {},
     showLoadingDialog           : true,
     isActivated                 : true,
-    includeNsfwResults          : false
+    includeNsfwResults          : false,
+    excludedBoards              : ''
 }, function ( items ) {
     hotkeyInformation           = items.hotkeyInformation;
     bShowLoadingDialog          = items.showLoadingDialog;
     bIsActivated                = items.isActivated;
     bIncludeNsfwResults         = items.includeNsfwResults;
+    excludedBoards              = items.excludedBoards
 
     init_handler( );
 });

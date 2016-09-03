@@ -4,12 +4,14 @@ $(document).ready( function() {
         hotkeyInformation           : {},
         showLoadingDialog           : true,
         isActivated                 : true,
-        includeNsfwResults          : false
+        includeNsfwResults          : false,
+        excludedBoards              : ''
     }, function ( items ) {
         var hotkeyInformation       = items.hotkeyInformation;
         var bShowLoadingDialog      = items.showLoadingDialog;
         var bIsActivated            = items.isActivated;
-        var bincludeNsfwResults     = items.includeNsfwResults;
+        var bIncludeNsfwResults     = items.includeNsfwResults;
+        var excludedBoards          = items.excludedBoards;
 
         if( bShowLoadingDialog) {
             $('#chkShowLoadingDialog').attr('checked',  true);
@@ -19,9 +21,11 @@ $(document).ready( function() {
             $('#btnActivateDeactive').toggleClass('button-primary').text( "Activate" );
         }
 
-        if( bincludeNsfwResults ) {
+        if( bIncludeNsfwResults ) {
             $('#chkIncludeNsfwResults').attr('checked',  true);
         }
+
+        $('#txtExcludedBoards').val( excludedBoards );
 
         $('#txtHotkey').makeKeyCombinator({
             defaultCombos: {
@@ -44,15 +48,19 @@ $(document).ready( function() {
         $('#btnActivateDeactive').on('click', function() {
             $(this).toggleClass('button-primary').text( $(this).text() == "Deactivate" ? "Activate" : "Deactivate" );
             bIsActivated = !bIsActivated;
-            chrome.storage.local.set( {isActivated: bIsActivated} );
+            chrome.storage.local.set( { isActivated: bIsActivated } );
         });
 
         $('#chkShowLoadingDialog').on('change', function() {
-            chrome.storage.local.set( {showLoadingDialog: $('#chkShowLoadingDialog').is(":checked")} );
+            chrome.storage.local.set( { showLoadingDialog: $('#chkShowLoadingDialog').is( ":checked" ) } );
         });
 
         $('#chkIncludeNsfwResults').on('change', function() {
-            chrome.storage.local.set( {includeNsfwResults: $('#chkIncludeNsfwResults').is(":checked")} );
+            chrome.storage.local.set( { includeNsfwResults: $('#chkIncludeNsfwResults').is( ":checked" ) } );
+        });
+
+        $('#btnExcludedBoardsSave').on('click', function() {
+            chrome.storage.local.set( { excludedBoards : $('#txtExcludedBoards').val( ) } );
         });
     });
 
