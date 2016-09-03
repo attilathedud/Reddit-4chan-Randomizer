@@ -3,7 +3,7 @@
   "name"              :     "Reddit Randomizer",
   "short_name"        :     "RedditRandom",
   "version"           :     "1.1.0",
-  "description"       :     "Make randomly browsing reddit easy. Simply hit Shift+Right Arrow to navigate to a random page while on reddit.",
+  "description"       :     "Make randomly browsing reddit easy. Simply hit a hotkey to navigate to a random page while on reddit.",
   "browser_action"    :     {
     "name"  : "Reddit Randomizer",
     "default_icon" : "imgs/reddit_randomizer_icon_48.png",
