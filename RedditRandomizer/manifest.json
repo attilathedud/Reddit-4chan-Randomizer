@@ -6,7 +6,7 @@
   "description"       :     "Make randomly browsing Reddit and 4chan easy. Simply hit a hotkey to navigate to a random page while on reddit or 4chan.",
   "browser_action"    :     {
     "name"  : "Reddit/4chan Randomizer",
-    "default_icon" : "imgs/reddit_randomizer_icon_48.png",
+    "default_icon" : "imgs/randomizer_icon_48.png",
     "default_popup": "popup_options.html"
   },
   "permissions": [
@@ -15,9 +15,9 @@
     "https://a.4cdn.org/*"
   ],
   "icons" : {
-      "16": "imgs/reddit_randomizer_icon_16.png",
-      "48": "imgs/reddit_randomizer_icon_48.png",
-      "128": "imgs/reddit_randomizer_icon_128.png"
+      "16": "imgs/randomizer_icon_16.png",
+      "48": "imgs/randomizer_icon_48.png",
+      "128": "imgs/randomizer_icon_128.png"
     },
   "content_scripts"   :     [ {
     "js"      : ["scripts/external/jquery.min.js", "scripts/external/jquery.blockUI.min.js", "scripts/external/jwerty.min.js", "scripts/background.js"],
