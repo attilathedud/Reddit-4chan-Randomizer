@@ -45,12 +45,17 @@ function init_handler( ) {
             var selected_thread = '';
 
             var possible_boards = sfw_boards;
-            if( bIncludeNsfwResults && Math.random() < 0.5 ) {
+            if( bIncludeNsfwResults ) {
                 possible_boards = sfw_boards.concat( nsfw_boards );
             }
 
             var excludeBoardsFormatted = $.map( excludedBoards.split(','), $.trim );
             possible_boards = $( possible_boards ).not( excludeBoardsFormatted ).get();
+
+            if( possible_boards.length == 0 ) {
+                $.unblockUI();
+                return true;
+            }
 
             selected_board = get_random_index( possible_boards );
 
@@ -91,7 +96,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
             bIncludeNsfwResults = storageChange.newValue;
         }
 
-        if( key == "excludeBoards" ) { 
+        if( key == "excludedBoards" ) { 
             excludedBoards = storageChange.newValue;
         }
     }
