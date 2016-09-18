@@ -1,4 +1,4 @@
-$(document).ready( function() {
+$( function() {
 
     chrome.storage.local.get({
         hotkeyInformation           : {},
@@ -7,25 +7,20 @@ $(document).ready( function() {
         includeNsfwResults          : false,
         excludedBoards              : ''
     }, function ( items ) {
-        var hotkeyInformation       = items.hotkeyInformation;
-        var bShowLoadingDialog      = items.showLoadingDialog;
-        var bIsActivated            = items.isActivated;
-        var bIncludeNsfwResults     = items.includeNsfwResults;
-        var excludedBoards          = items.excludedBoards;
 
-        if( bShowLoadingDialog) {
+        if( items.showLoadingDialog ) {
             $('#chkShowLoadingDialog').attr('checked',  true);
         }
 
-        if( !bIsActivated ) {
+        if( !items.isActivated ) {
             $('#btnActivateDeactive').toggleClass('button-primary').text( "Activate" );
         }
 
-        if( bIncludeNsfwResults ) {
+        if( items.includeNsfwResults ) {
             $('#chkIncludeNsfwResults').attr('checked',  true);
         }
 
-        $('#txtExcludedBoards').val( excludedBoards );
+        $('#txtExcludedBoards').val( items.excludedBoards );
 
         $('#txtHotkey').makeKeyCombinator({
             defaultCombos: {
@@ -38,17 +33,16 @@ $(document).ready( function() {
             }
         });
 
-        if( $.isEmptyObject( hotkeyInformation ) ) {
+        if( $.isEmptyObject( items.hotkeyInformation ) ) {
             $('#txtHotkey').defaultKeyCombinator();
         }
         else {
-            $('#txtHotkey').val( hotkeyInformation.comboString );
+            $('#txtHotkey').val( items.hotkeyInformation.comboString );
         }
 
         $('#btnActivateDeactive').on('click', function() {
             $(this).toggleClass('button-primary').text( $(this).text() == "Deactivate" ? "Activate" : "Deactivate" );
-            bIsActivated = !bIsActivated;
-            chrome.storage.local.set( { isActivated: bIsActivated } );
+            chrome.storage.local.set( { isActivated: $(this).text() == "Deactivate" ? true : false } );
         });
 
         $('#chkShowLoadingDialog').on('change', function() {
