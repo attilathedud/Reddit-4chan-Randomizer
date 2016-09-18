@@ -8,12 +8,6 @@ var options = {
     "excludedBoards"        : ''
 };
 
-var sfw_boards                  = [ 'a', 'c', 'w', 'm', 'cgl', 'cm', 'f', 'n', 'jp', 'v', 'vg', 'vp', 'vr',
-                                    'co', 'g', 'tv', 'k', 'o', 'an', 'tg', 'sp', 'asp', 'sci', 'his', 'int',
-                                    'out', 'toy', 'i', 'po', 'p', 'ck', 'ic', 'wg', 'mu', 'fa', '3', 'gd', 'diy',
-                                    'wsg', 'qst', 'biz', 'trv', 'fit', 'x', 'lit', 'adv', 'lgbt', 'mlp', 'news',
-                                    'wsr'];
-
 var nsfw_boards                 = [ 'b', 'r9k', 'pol', 'soc', 's4s', 's', 'hc', 'hm', 'h', 'e', 'u', 'd', 'y', 
                                     't', 'hr', 'gif', 'aco', 'r'];
 
@@ -43,29 +37,33 @@ function init_handler( ) {
         }
 
         if( window.location.href.includes(".4chan.org") ) {
-            var selected_board  = '';
-            var selected_thread = '';
 
-            var possible_boards = sfw_boards;
-            if( options["includeNsfwResults"] ) {
-                possible_boards = sfw_boards.concat( nsfw_boards );
-            }
+            $.getJSON( "https://a.4cdn.org/boards.json", function( data ) {
+                var possible_boards = data.boards;
 
-            var excludeBoardsFormatted = $.map( options["excludedBoards"].split(','), $.trim );
-            possible_boards = $( possible_boards ).not( excludeBoardsFormatted ).get();
+                if( !options[ "includeNsfwResults" ] ) {
+                    possible_boards = possible_boards.filter( board => !nsfw_boards.includes( board.board ) );
+                }
 
-            if( possible_boards.length == 0 ) {
-                $.unblockUI();
-                return true;
-            }
+                var excludeBoardsFormatted = $.map( options[ "excludedBoards" ].split( ',' ), $.trim );
+                possible_boards = possible_boards.filter( board => !excludeBoardsFormatted.includes( board.board ) );
 
-            selected_board = get_random_index( possible_boards );
+                if( possible_boards.length == 0 ) {
+                    $.unblockUI();
+                    return true;
+                }
 
-            $.getJSON( "https://a.4cdn.org/" + selected_board + "/threads.json", function( data ) {
-                var selected_page = get_random_index( data );
-                selected_thread   = get_random_index( selected_page.threads ).no;
-                
-                window.location = 'https://boards.4chan.org/' + selected_board + '/thread/' + selected_thread;
+                var selected_board = get_random_index( possible_boards ).board;
+
+                $.getJSON( "https://a.4cdn.org/" + selected_board + "/threads.json", function( data ) {
+                    var selected_page = get_random_index( data );
+                    var selected_thread   = get_random_index( selected_page.threads ).no;
+                    
+                    window.location = 'https://boards.4chan.org/' + selected_board + '/thread/' + selected_thread;
+                })
+                .fail(function() {
+                    $.unblockUI();
+                });
             })
             .fail(function() {
                 $.unblockUI();
