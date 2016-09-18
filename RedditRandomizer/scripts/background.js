@@ -64,6 +64,9 @@ function init_handler( ) {
                 selected_thread   = get_random_index( selected_page.threads ).no;
                 
                 window.location = 'https://boards.4chan.org/' + selected_board + '/thread/' + selected_thread;
+            })
+            .fail(function() {
+                $.unblockUI();
             });
         }
         else {
