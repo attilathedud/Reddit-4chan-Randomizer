@@ -8,20 +8,34 @@ $( function() {
         excludedBoards              : ''
     }, function ( items ) {
 
-        if( items.showLoadingDialog ) {
-            $('#chkShowLoadingDialog').attr('checked',  true);
-        }
+        //Set up the "Show Loading Dialog" option
+        $('#chkShowLoadingDialog').attr('checked',  items.showLoadingDialog);
+        $('#chkShowLoadingDialog').on('change', function() {
+            chrome.storage.local.set( { showLoadingDialog: $('#chkShowLoadingDialog').is( ":checked" ) } );
+        });
 
+        //Set up the "Include NSFW Results" option
+        $('#chkIncludeNsfwResults').attr('checked',  items.includeNsfwResults);
+        $('#chkIncludeNsfwResults').on('change', function() {
+            chrome.storage.local.set( { includeNsfwResults: $('#chkIncludeNsfwResults').is( ":checked" ) } );
+        });
+
+        //Set up the "Activate" button
         if( !items.isActivated ) {
             $('#btnActivateDeactive').toggleClass('button-primary').text( "Activate" );
         }
+        $('#btnActivateDeactive').on('click', function() {
+            $(this).toggleClass('button-primary').text( $(this).text() == "Deactivate" ? "Activate" : "Deactivate" );
+            chrome.storage.local.set( { isActivated: $(this).text() == "Deactivate" ? true : false } );
+        });
 
-        if( items.includeNsfwResults ) {
-            $('#chkIncludeNsfwResults').attr('checked',  true);
-        }
-
+        //Set up the "Excluded Boards"
         $('#txtExcludedBoards').val( items.excludedBoards );
+        $('#btnExcludedBoardsSave').on('click', function() {
+            chrome.storage.local.set( { excludedBoards : $('#txtExcludedBoards').val( ) } );
+        });
 
+        //Set up the "Hotkey" box
         $('#txtHotkey').makeKeyCombinator({
             defaultCombos: {
                 mac:  ['⇧', '→'],
@@ -40,22 +54,6 @@ $( function() {
             $('#txtHotkey').val( items.hotkeyInformation.comboString );
         }
 
-        $('#btnActivateDeactive').on('click', function() {
-            $(this).toggleClass('button-primary').text( $(this).text() == "Deactivate" ? "Activate" : "Deactivate" );
-            chrome.storage.local.set( { isActivated: $(this).text() == "Deactivate" ? true : false } );
-        });
-
-        $('#chkShowLoadingDialog').on('change', function() {
-            chrome.storage.local.set( { showLoadingDialog: $('#chkShowLoadingDialog').is( ":checked" ) } );
-        });
-
-        $('#chkIncludeNsfwResults').on('change', function() {
-            chrome.storage.local.set( { includeNsfwResults: $('#chkIncludeNsfwResults').is( ":checked" ) } );
-        });
-
-        $('#btnExcludedBoardsSave').on('click', function() {
-            chrome.storage.local.set( { excludedBoards : $('#txtExcludedBoards').val( ) } );
-        });
     });
 
 });
