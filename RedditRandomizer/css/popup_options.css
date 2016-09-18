@@ -10,10 +10,11 @@ body {
 	margin-left: 8px;
 }
 
-.pull-right {
-	float: right;
+.textarea-boards {
+	width: 160px;
+	resize: none;
 }
 
-.width-160 {
-	width: 160px;
+.button-save {
+	margin-top: 12px;
 }
