@@ -37,8 +37,8 @@ function init_handler( ) {
 
         if( options["showLoadingDialog"] ) {
             $.blockUI({
-                message: '<h1><img src="' + chrome.extension.getURL("../imgs/ajax-loader.gif") + '" /> Loading... </h1>',
-                css: { backgroundColor: '#000000', color: '#ffffff', border: '0', borderRadius: '5px', padding: '10px' }
+                message: '<span><img src="' + chrome.extension.getURL("../imgs/ajax-loader.gif") + '" /> Loading... </span>',
+                css: { backgroundColor: '#000000', fontSize: '20px', fontWeight: 'normal', color: '#ffffff', border: '0', borderRadius: '5px', padding: '20px' }
             });
         }
 
