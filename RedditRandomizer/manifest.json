@@ -2,7 +2,7 @@
   "manifest_version"  :     2,
   "name"              :     "Reddit/4chan Randomizer",
   "short_name"        :     "Reddit/4chanRand",
-  "version"           :     "1.2.0",
+  "version"           :     "1.2.1",
   "description"       :     "Make randomly browsing Reddit and 4chan easy. Simply hit a hotkey to navigate to a random page while on reddit or 4chan.",
   "browser_action"    :     {
     "name"  : "Reddit/4chan Randomizer",

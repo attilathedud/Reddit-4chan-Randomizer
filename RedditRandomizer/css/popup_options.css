@@ -20,4 +20,5 @@ body {
 
 .button-save {
 	margin-top: 12px;
+	display: none;
 }

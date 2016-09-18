@@ -36,6 +36,10 @@ $( function() {
         $('#txtExcludedBoards').val( items.excludedBoards );
         $('#btnExcludedBoardsSave').on('click', function() {
             chrome.storage.local.set( { excludedBoards : $('#txtExcludedBoards').val( ) } );
+            $(this).fadeOut();
+        });
+        $('#txtExcludedBoards').on('keyup', function() {
+            $('#btnExcludedBoardsSave').fadeIn();
         });
 
         //Set up the "Hotkey" box
