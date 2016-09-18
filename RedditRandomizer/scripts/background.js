@@ -1,10 +1,12 @@
 var key_handler;
 
-var hotkeyInformation           = {}
-var bShowLoadingDialog          = true;
-var bIsActivated                = true;
-var bIncludeNsfwResults         = false;
-var excludedBoards              = '';
+var options = {
+    "hotkeyInformation"     : {},
+    "showLoadingDialog"     : true,
+    "isActivated"           : true,
+    "includeNsfwResults"    : false,
+    "excludedBoards"        : ''
+};
 
 var sfw_boards                  = [ 'a', 'c', 'w', 'm', 'cgl', 'cm', 'f', 'n', 'jp', 'v', 'vg', 'vp', 'vr',
                                     'co', 'g', 'tv', 'k', 'o', 'an', 'tg', 'sp', 'asp', 'sci', 'his', 'int',
@@ -23,17 +25,17 @@ function get_random_index( a ) {
 function init_handler( ) {
     var hotkey_jwerty_combo     = '';
 
-    if( $.isEmptyObject( hotkeyInformation ) ) {
+    if( $.isEmptyObject( options["hotkeyInformation"] ) ) {
         hotkey_jwerty_combo = '⇧+→'
     }
     else {
-        hotkey_jwerty_combo = hotkeyInformation.comboString.split('').join('+');
+        hotkey_jwerty_combo = options["hotkeyInformation"].comboString.split('').join('+');
     }
 
     key_handler = jwerty.key( hotkey_jwerty_combo, function ( ) { 
-        if( !!!bIsActivated ) return true;
+        if( !!!options["isActivated"] ) return true;
 
-        if( bShowLoadingDialog ) {
+        if( options["showLoadingDialog"] ) {
             $.blockUI({
                 message: '<h1><img src="' + chrome.extension.getURL("../imgs/ajax-loader.gif") + '" /> Loading... </h1>',
                 css: { backgroundColor: '#000000', color: '#ffffff', border: '0', borderRadius: '5px', padding: '10px' }
@@ -45,11 +47,11 @@ function init_handler( ) {
             var selected_thread = '';
 
             var possible_boards = sfw_boards;
-            if( bIncludeNsfwResults ) {
+            if( options["includeNsfwResults"] ) {
                 possible_boards = sfw_boards.concat( nsfw_boards );
             }
 
-            var excludeBoardsFormatted = $.map( excludedBoards.split(','), $.trim );
+            var excludeBoardsFormatted = $.map( options["excludedBoards"].split(','), $.trim );
             possible_boards = $( possible_boards ).not( excludeBoardsFormatted ).get();
 
             if( possible_boards.length == 0 ) {
@@ -71,7 +73,7 @@ function init_handler( ) {
         }
         else {
             window.location = 'https://www.reddit.com/r/' + 
-                ( ( bIncludeNsfwResults && Math.random() < 0.5 ) ? 'randnsfw' : 'random' );
+                ( ( options["includeNsfwResults"] && Math.random() < 0.5 ) ? 'randnsfw' : 'random' );
         }
     });
 }
@@ -80,27 +82,11 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (key in changes) {
         var storageChange = changes[key];
 
-        if( key == "hotkeyInformation" ) {
-            hotkeyInformation = storageChange.newValue;
+        options[ key ] = storageChange.newValue;
 
+        if( key == "hotkeyInformation" ) {
             key_handler.unbind();
             init_handler();
-        }
-
-        if( key == "showLoadingDialog" ) {
-            bShowLoadingDialog = storageChange.newValue;
-        }
-
-        if( key == "isActivated" ) {
-            bIsActivated = storageChange.newValue;
-        }
-
-        if( key == "includeNsfwResults" ) {
-            bIncludeNsfwResults = storageChange.newValue;
-        }
-
-        if( key == "excludedBoards" ) { 
-            excludedBoards = storageChange.newValue;
         }
     }
 });
@@ -112,11 +98,9 @@ chrome.storage.local.get({
     includeNsfwResults          : false,
     excludedBoards              : ''
 }, function ( items ) {
-    hotkeyInformation           = items.hotkeyInformation;
-    bShowLoadingDialog          = items.showLoadingDialog;
-    bIsActivated                = items.isActivated;
-    bIncludeNsfwResults         = items.includeNsfwResults;
-    excludedBoards              = items.excludedBoards
+    for( key in items ) {
+        options[ key ] = items[ key ];
+    }
 
     init_handler( );
 });
