@@ -1,3 +1,6 @@
+/*!
+*   Called when our pop-up options modal is rendered. Responsible for filling in values to their saved state.
+*/
 $( function() {
 
     chrome.storage.local.get({

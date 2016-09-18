@@ -1,5 +1,11 @@
+/*!
+*   Used to keep track of the current key handler created by jwerty.
+*/
 var key_handler;
 
+/*!
+*   Options related to extension operation.
+*/
 var options = {
     "hotkeyInformation"     : {},
     "showLoadingDialog"     : true,
@@ -8,14 +14,22 @@ var options = {
     "excludedBoards"        : ''
 };
 
+/*!
+*   List of 4chan's nsfw boards.
+*/
 var nsfw_boards                 = [ 'b', 'r9k', 'pol', 'soc', 's4s', 's', 'hc', 'hm', 'h', 'e', 'u', 'd', 'y', 
                                     't', 'hr', 'gif', 'aco', 'r'];
 
-
-function get_random_index( a ) {
+/*!
+*   Given an array `a`, return random element from the array.
+*/
+function get_random_element( a ) {
     return a[ Math.floor( Math.random() * a.length ) ];
 }
 
+/*!
+*   Responsible for setting up the jwerty hotkey handler.
+*/
 function init_handler( ) {
     var hotkey_jwerty_combo     = '';
 
@@ -38,26 +52,31 @@ function init_handler( ) {
 
         if( window.location.href.includes(".4chan.org") ) {
 
+            //First, grab all the active 4chan boards
             $.getJSON( "https://a.4cdn.org/boards.json", function( data ) {
                 var possible_boards = data.boards;
 
+                //Filter out nsfw boards
                 if( !options[ "includeNsfwResults" ] ) {
                     possible_boards = possible_boards.filter( board => !nsfw_boards.includes( board.board ) );
                 }
 
+                //Filter out excluded boards
                 var excludeBoardsFormatted = $.map( options[ "excludedBoards" ].split( ',' ), $.trim );
                 possible_boards = possible_boards.filter( board => !excludeBoardsFormatted.includes( board.board ) );
 
+                //If we get here, the user has defined all boards off-limit for some reason
                 if( possible_boards.length == 0 ) {
                     $.unblockUI();
                     return true;
                 }
 
-                var selected_board = get_random_index( possible_boards ).board;
+                var selected_board = get_random_element( possible_boards ).board;
 
+                //Next, grab all the threads for that board
                 $.getJSON( "https://a.4cdn.org/" + selected_board + "/threads.json", function( data ) {
-                    var selected_page = get_random_index( data );
-                    var selected_thread   = get_random_index( selected_page.threads ).no;
+                    var selected_page = get_random_element( data );
+                    var selected_thread   = get_random_element( selected_page.threads ).no;
                     
                     window.location = 'https://boards.4chan.org/' + selected_board + '/thread/' + selected_thread;
                 })
@@ -76,7 +95,10 @@ function init_handler( ) {
     });
 }
 
-chrome.storage.onChanged.addListener(function(changes, namespace) {
+/*!
+*   Handler for changes in options. Due to how jwerty works, changing the hotkey requires us to re-register a new handler.
+*/
+chrome.storage.onChanged.addListener( function( changes, namespace ) {
     for (key in changes) {
         var storageChange = changes[key];
 
@@ -89,6 +111,9 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     }
 });
 
+/*!
+*   On initial page load, grab all the current option values and load them into the content-script
+*/
 chrome.storage.local.get({
     hotkeyInformation           : {},
     showLoadingDialog           : true,

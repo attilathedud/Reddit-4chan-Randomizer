@@ -13,6 +13,9 @@ body {
 .textarea-boards {
 	width: 160px;
 	resize: none;
+	/* Fixing up a bug where textarea will disappearing on macs when doing a cmd->a delete*/
+	/* https://bugs.chromium.org/p/chromium/issues/detail?id=447421 */
+	float: none;
 }
 
 .button-save {
