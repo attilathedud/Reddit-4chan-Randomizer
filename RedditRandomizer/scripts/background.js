@@ -37,7 +37,30 @@ function init_handler( ) {
         hotkey_jwerty_combo = '⇧+→'
     }
     else {
-        hotkey_jwerty_combo = options["hotkeyInformation"].comboString.split('').join('+');
+        // Included to fix a bug on Windows and Linux where keys were being interpreted incorrectly.
+        for( let key of options["hotkeyInformation"].comboParts ) {
+            var translated_key = key.keyChar;
+           
+            switch( key.keyChar )
+            {
+                case "Right Arrow":
+                    translated_key = '→';
+                    break;
+                case "Left Arrow":
+                    translated_key = '←';
+                    break;
+                case "Up Arrow":
+                    translated_key = '↑';
+                    break;
+                case "Down Arrow":
+                    translated_key = '↓';
+                    break;
+            }
+           
+            hotkey_jwerty_combo += translated_key + "+";
+        }
+
+        hotkey_jwerty_combo = hotkey_jwerty_combo.slice( 0, -1 );
     }
 
     key_handler = jwerty.key( hotkey_jwerty_combo, function ( ) { 
