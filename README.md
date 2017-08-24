@@ -6,6 +6,9 @@ In the spirit of breaking new ground, this extension now allows you to navigate 
 [Play Store](https://chrome.google.com/webstore/detail/reddit4chan-randomizer/afkglhifebfaabejgnpdkeljeohdgdej)
 
 ## Changelog
+### v1.2.2
+- Fixed a bug where key code combinations were not working on Windows and Linux machines.
+
 ### v1.2.1
 - Some optimizations to speed up rendering of the options panel.
 - Tweaked 4chan selection algorithm to select all boards.
